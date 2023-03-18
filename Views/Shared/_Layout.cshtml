@@ -10,33 +10,81 @@
 </head>
 <body>
     <header>
-        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-            <ul class="navbar-nav flex-grow-1">
-                @if (Context.Session.GetString("JWT") == null)
-                {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                    </li>
-                }
-                else
-                {
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Vehiculos
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" asp-area="" asp-controller="Vehiculos" asp-action="Create">Nuevo Vehiculo</a></li>
-                            <li><a class="dropdown-item" asp-area="" asp-controller="Vehiculos" asp-action="Index">Listado de Vehiculos</a></li>
-                        </ul>
-                    </li>
-                }
-            </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="~/images/logo.png" width="25%" alt="Logo" />
+                </div>
+                <div class="col-md-8">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                            <ul class="navbar-nav">
+                                @if (Context.Session.GetString("JWT") == null)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                                    </li>
+                                    <!-- New menu items -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownBoletos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Boletos
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownBoletos">
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Boletos" asp-action="Create">Nuevo Boleto</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Boletos" asp-action="Index">Listado de Boletos</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownPolicias" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Policias
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownPolicias">
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Policias" asp-action="Create">Nuevo Policia</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Policias" asp-action="Index">Listado de Policias</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownLogins" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Logins
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownLogins">
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Logins" asp-action="Create">Nuevo Login</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Logins" asp-action="Index">Listado de Logins</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownConductores" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Conductores
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownConductores">
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Conductores" asp-action="Create">Nuevo Conductor</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Conductores" asp-action="Index">Listado de Conductores</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownVehiculos" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Vehiculos
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownVehiculos">
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Vehiculos" asp-action="Create">Nuevo Vehiculo</a></li>
+                                            <li><a class="dropdown-item" asp-area="" asp-controller="Vehiculos" asp-action="Index">Listado de Vehiculos</a></li>
+                                        </ul>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
         </div>
     </header>
     <div class="container">

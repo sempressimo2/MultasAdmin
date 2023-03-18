@@ -1,4 +1,4 @@
-﻿using APIMultas.Models;
+﻿using MultasAdmin.Models;
 using Refit;
 
 namespace MultasAdmin.Interface

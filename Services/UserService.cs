@@ -1,4 +1,5 @@
-﻿using MultasAdmin.Models;
+﻿using MultasAdmin.Interface;
+using MultasAdmin.Models;
 
 namespace MultasAdmin.Services
 {
@@ -9,6 +10,13 @@ namespace MultasAdmin.Services
 
     public class UserService : IUserService
     {
+        private readonly ISecurityApi _securityApi;
+
+        public UserService(ISecurityApi securityApi)
+        {
+            _securityApi = securityApi;
+        }
+
         // Replace this with a proper data store and authentication method
         private static List<User> users = new List<User>
         {
@@ -17,7 +25,15 @@ namespace MultasAdmin.Services
 
         public async Task<User> AuthenticateAsync(string username, string password)
         {
-            return await Task.Run(() => users.FirstOrDefault(u => u.Username == username && u.Password == password));
+            AuthModel authModel = await _securityApi.Authenticate(username, password);
+
+            User user = new()
+            {
+                Username = username,
+                Token = authModel.Token,
+            };
+
+            return user;
         }
     }
 }

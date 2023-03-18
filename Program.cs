@@ -35,6 +35,7 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
     services.AddControllersWithViews();
 
     services.AddRefitClient<IVehiculosApi>().ConfigureHttpClient(c => c.BaseAddress = new Uri(configuration["ApiMultasUrl"]));
+    services.AddRefitClient<ISecurityApi>().ConfigureHttpClient(c => c.BaseAddress = new Uri(configuration["ApiMultasUrl"]));
 
     services.AddScoped<VehiculoService>();
 

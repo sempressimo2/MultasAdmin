@@ -26,18 +26,15 @@ public class AccountController : Controller
     public async Task<IActionResult> Login(LoginViewModel model)
     {
         // authenticate user
-        var user = await _userService.AuthenticateAsync(model.Username, model.Password);
+        User user = await _userService.AuthenticateAsync(model.Username, model.Password);
         if (user == null)
         {
             ModelState.AddModelError("", "Invalid username or password");
             return View(model);
         }
 
-        // create JWT token
-        //var jwtToken = GenerateJwtToken(user.Username, _jwtSettings.Value);
-
         // set JWT token in session
-        //HttpContext.Session.SetString("JWT", jwtToken);
+        HttpContext.Session.SetString("JWT", user.Token);
 
         return RedirectToAction("Index", "Home");
     }

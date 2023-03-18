@@ -1,5 +1,7 @@
-﻿using MultasAdmin.Interface;
+﻿using Microsoft.AspNetCore.Http;
+using MultasAdmin.Interface;
 using MultasAdmin.Models;
+using Refit;
 
 public class VehiculoService
 {
@@ -12,42 +14,35 @@ public class VehiculoService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    private void SetAuthorizationHeader()
-    {
-        var token = _httpContextAccessor.HttpContext.Session.GetString("JWT");
-        if (!string.IsNullOrEmpty(token))
-        {
-            //_vehiculosApi.Authorization = $"Bearer {token}";
-        }
-    }
-
     public async Task<List<Vehiculo>> GetAllVehiculos()
     {
-        SetAuthorizationHeader();
-        return await _vehiculosApi.GetAllVehiculos();
+        string? token = _httpContextAccessor.HttpContext?.Session.GetString("JWT");
+
+        return await _vehiculosApi.GetAllVehiculos($"Bearer {token}");
     }
 
     public async Task<Vehiculo> GetVehiculoById(int id)
     {
-        SetAuthorizationHeader();
-        return await _vehiculosApi.GetVehiculoById(id);
+        string? token = _httpContextAccessor.HttpContext?.Session.GetString("JWT");
+        return await _vehiculosApi.GetVehiculoById(id, $"Bearer {token}");
     }
 
     public async Task CreateVehiculo(Vehiculo vehiculo)
     {
-        SetAuthorizationHeader();
-        await _vehiculosApi.CreateVehiculo(vehiculo);
+        string? token = _httpContextAccessor.HttpContext?.Session.GetString("JWT");
+        await _vehiculosApi.CreateVehiculo(vehiculo, $"Bearer {token}");
     }
 
     public async Task UpdateVehiculo(int id, Vehiculo vehiculo)
     {
-        SetAuthorizationHeader();
-        await _vehiculosApi.UpdateVehiculo(id, vehiculo);
+        string? token = _httpContextAccessor.HttpContext?.Session.GetString("JWT");
+        await _vehiculosApi.UpdateVehiculo(id, vehiculo, $"Bearer {token}");
     }
 
     public async Task DeleteVehiculo(int id)
     {
-        SetAuthorizationHeader();
-        await _vehiculosApi.DeleteVehiculo(id);
+        string? token = _httpContextAccessor.HttpContext?.Session.GetString("JWT");
+        await _vehiculosApi.DeleteVehiculo(id, $"Bearer {token}");
     }
+
 }

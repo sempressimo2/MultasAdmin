@@ -1,16 +1,37 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace APIMultas.Models
+namespace MultasAdmin.Models
 {
     public class Policia
     {
         [Key]
         public int ID { get; set; }
-        public int Rec { get; set; }
-        public string? Nombre { get; set; }
-        public string? Placa { get; set; }
-        public string? Supervisor { get; set; }
-        public bool Activo { get; set; }
-        public string? Unidad { get; set; }
+
+        [Required]
+        [MaxLength(20)]
+        public string? Tablilla { get; set; }
+
+        [MaxLength(100)]
+        public string? Marca { get; set; }
+
+        [MaxLength(100)]
+        public string? MarcaOtra { get; set; }
+
+        [MaxLength(100)]
+        public string? Modelo { get; set; }
+
+        [MaxLength(50)]
+        public string? Color { get; set; }
+
+        [MaxLength(50)]
+        public string? Registro { get; set; }
+
+        [MaxLength(50)]
+        public string? Licencia { get; set; }
+
+        [MaxLength(50)]
+        public string? SerieMotor { get; set; }
+
+        public ICollection<Boleto>? Boletos { get; set; }
     }
 }
